@@ -1,0 +1,15 @@
+#leftbox { 
+    float:left;  
+    background:oldlace; 
+    width:25%; 
+} 
+#middlebox{ 
+    float:left;  
+    background:burlywood; 
+    width:69%; 
+    height:280px; 
+} 
+h1{ 
+    color:green; 
+    text-align:center; 
+} 
