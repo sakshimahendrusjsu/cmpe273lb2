@@ -1,6 +1,7 @@
 import { GET_CART, SET_PRICE, SET_ORDER, DEL_ITEMS, GET_ORDER , ORDER_STATUS} from '../constants/actionsConstants';
 import axios from 'axios';
 import cookie from 'react-cookies';
+import { HOST } from '../constants/host';
 
 export function getCartItems() {
   console.log("get cart items action ");
@@ -48,7 +49,7 @@ export function placeOrder(data) {
   }
   console.log("placing order with body", body)
   return (dispatch) => {
-    axios.post('http://localhost:3001/morder/placeOrder', body)
+    axios.post('http://'+HOST+'/morder/placeOrder', body)
       .then((response) =>{ 
         console.log("order placed");
         dispatch(updatePlaceOrder(response))})
@@ -81,7 +82,7 @@ export function getOrderDeatilsBuyer(status) {
       'email': localStorage.getItem("email")
     }
     return (dispatch) => {
-   axios.post('http://localhost:3001/morder/getOrderDeatilsBuyer/', data)
+   axios.post('http://'+HOST+'/morder/getOrderDeatilsBuyer/', data)
    .then((response) =>{ 
     console.log("GET BUYER order ACTION");
     dispatch(updateOrderDeatils(response))})
@@ -96,7 +97,7 @@ export function getOrderDeatilsOwner(status) {
   'email': localStorage.getItem("email")
 }
 return (dispatch) => {
- axios.post('http://localhost:3001/morder/getOrderDeatilsOwnerWithStatus/', data)
+ axios.post('http://'+HOST+'/morder/getOrderDeatilsOwnerWithStatus/', data)
  .then((response) =>{ 
   console.log("GET order owner action");
   dispatch(updateOrderDeatils(response))})
@@ -111,7 +112,7 @@ function updateOrderDeatils(returndata) {
 export function handleStatus(body) {
   console.log("handle status",body)
 return (dispatch) => {
- axios.post('http://localhost:3001/morder/updateStatus', body)
+ axios.post('http://'+HOST+'/morder/updateStatus', body)
  .then((response) =>{ 
   console.log("handleStatus order action");
   dispatch(updateStatus(response))})

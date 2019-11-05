@@ -1,5 +1,6 @@
 import { EDIT_EMAIL,EDIT_NAME,EDIT_CUISINE,EDIT_PHONE,EDIT_RESTAURANT,EDIT_IMAGE,GET_ALL} from '../constants/actionsConstants';
 import axios from 'axios';
+import { HOST } from '../constants/host';
 
 export function editName(formdata) {
   let email=localStorage.getItem("email");
@@ -10,7 +11,7 @@ export function editName(formdata) {
                   'email':email}
       formdata=Object.assign(formdata,data);
       console.log("object assign ",formdata);
-  axios.put('http://localhost:3001/mprofile/editName',formdata)
+  axios.put('http://'+HOST+'/mprofile/editName',formdata)
   .then((response)=>dispatch(updateName(response)))
     }
 }
@@ -34,7 +35,7 @@ export function editEmail(formdata){
                   'email':email}
       formdata=Object.assign(formdata,data);
       console.log("object assign ",formdata);
-  axios.put('http://localhost:3001/mprofile/editEmail',formdata)
+  axios.put('http://'+HOST+'/mprofile/editEmail',formdata)
   .then((response)=>dispatch(updateEmail(response)))
     }
     }
@@ -57,7 +58,7 @@ function updateEmail(returndata) {
                   'email':email}
       formdata=Object.assign(formdata,data);
       console.log("object assign ",formdata);
-      axios.put('http://localhost:3001/mprofile/editPhone',formdata)
+      axios.put('http://'+HOST+'/mprofile/editPhone',formdata)
       .then((response)=>dispatch(updatePhone(response)));   
       }    
   }
@@ -79,7 +80,7 @@ export function editImage(formdata) {
 };
   console.log("edit image action ",formdata);
   return (dispatch)=>{
- axios.post("http://localhost:3001/mprofile/fileUpload",formdata,config)
+ axios.post('http://'+HOST+'/mprofile/fileUpload',formdata,config)
    .then((response) =>dispatch(updateImage(response)))
 }}
 
@@ -97,7 +98,7 @@ export function editImage(formdata) {
                     'email':email}
         formdata=Object.assign(formdata,data);
         console.log("object assign ",formdata);
-    axios.put('http://localhost:3001/mprofile/editCuisine',formdata)
+    axios.put('http://'+HOST+'/mprofile/editCuisine',formdata)
     .then((response)=>dispatch(updateCuisine(response)))
   }
 }
@@ -119,7 +120,7 @@ export function editImage(formdata) {
                     'email':email}
         formdata=Object.assign(formdata,data);
         console.log("object assign ",formdata);
-    axios.put('http://localhost:3001/mprofile/editRestaurantName',formdata)
+    axios.put('http://'+HOST+'/mprofile/editRestaurantName',formdata)
     .then((response)=>dispatch(updateRestuarantName(response)))
     getAll(data);
   }
@@ -136,7 +137,7 @@ export function editImage(formdata) {
   export function getAll(formdata) {
     console.log("GET ALL ",formdata);
     return (dispatch)=>{ 
-    axios.post('http://localhost:3001/mprofile/getAll',formdata)
+    axios.post('http://'+HOST+'/mprofile/getAll',formdata)
     .then((response)=>dispatch(updateDetails(response)))
     };
 }

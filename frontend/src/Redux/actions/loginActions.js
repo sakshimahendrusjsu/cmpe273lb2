@@ -1,11 +1,11 @@
 import { SIGN } from '../constants/actionsConstants';
 import axios from 'axios';
-import cookie from 'react-cookies';
+import {HOST} from '../constants/host';
 
 export function signup(formdata) {
   console.log("Signup", formdata);
   return (dispatch) => {
-    axios.post('http://localhost:3001/msignup/signup', formdata)
+    axios.post('http://'+HOST+'/msignup/signup', formdata)
       .then((response) => dispatch(updateSignUp(response)))
       .catch(error => {
         console.log("catch", dispatch(updateSignUp(error.response)));
@@ -24,7 +24,7 @@ export function signin(formdata) {
   console.log("Signin", formdata);
   axios.defaults.withCredentials = true;
   return (dispatch) => {
-    axios.post('http://localhost:3001/mlogin/login', formdata)
+    axios.post('http://'+HOST+'/mlogin/login', formdata)
       .then((response) => dispatch(updateSignIn(response)))
       .catch(error => {
         console.log("catch", dispatch(updateSignUp(error.response)));

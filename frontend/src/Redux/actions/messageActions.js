@@ -1,6 +1,6 @@
 import { GET_MSG,PUT_MSG } from '../constants/actionsConstants';
 import axios from 'axios';
-
+import { HOST } from '../constants/host';
 
 
 export function updateChat(data) {
@@ -17,7 +17,7 @@ export function updateChat(data) {
     }
     console.log("chat body ", body)
     return (dispatch) => {
-      axios.post('http://localhost:3001/mmsg/putMsg', body)
+      axios.post('http://'+HOST+'/mmsg/putMsg', body)
         .then((response) =>{ 
           console.log("chat updated");
           dispatch(sendChat(response))})
@@ -36,7 +36,7 @@ export function getChat(data) {
     }
     console.log("chat body ", body)
     return (dispatch) => {
-      axios.post('http://localhost:3001/mmsg/getMsg', body)
+      axios.post('http://'+HOST+'/mmsg/getMsg', body)
         .then((response) =>{ 
           console.log("chat updated",response);
           dispatch(retrieveChatHistory(response))})

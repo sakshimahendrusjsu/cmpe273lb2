@@ -1,11 +1,12 @@
 import { GET_SECTIONS,ADD_SECTION,DELETE_SECTION,ADD_ITEM,DEL_SECTION_ITEM } from '../constants/actionsConstants';
 import axios from 'axios';
 import cookie from 'react-cookies';
+import { HOST } from '../constants/host';
 
 export function addSection(formdata) {
   console.log("action- add section", formdata);
   return (dispatch) => {
-    axios.post('http://localhost:3001/msec/add', formdata)
+    axios.post('http://'+HOST+'/msec/add', formdata)
       .then((response) => dispatch(
         updateSection(response)))
         .catch(error => {
@@ -23,7 +24,7 @@ function updateSection(returndata) {
 export function getAll(formdata) {
   console.log("action- get all", formdata);
   return (dispatch) => {
-    axios.post('http://localhost:3001/msec/getAll', formdata)
+    axios.post('http://'+HOST+'/msec/getAll', formdata)
       .then((response) => dispatch(getSections(response)))
       .catch(error => {
         console.log("catch", error);
@@ -46,7 +47,7 @@ export function addItem(formdata) {
     }
   }
   return (dispatch) => {
-    axios.post('http://localhost:3001/msec/insertItem', formdata)
+    axios.post('http://'+HOST+'/msec/insertItem', formdata)
       .then((response) => dispatch(updateItem(response)))
       .catch(error => {
         console.log("catch", error);
@@ -68,7 +69,7 @@ function updateItem(returndata) {
 export function deleteSection(formdata) {
     console.log("in delete section", formdata);
     return (dispatch) => {
-      axios.post('http://localhost:3001/msec/del', formdata)
+      axios.post('http://'+HOST+'/msec/del', formdata)
         .then((response) => dispatch(updateDelete(response)))
         .catch(error => {
           console.log("catch", error);
@@ -85,7 +86,7 @@ export function deleteSection(formdata) {
   export function deleteSectionItem(formdata) {
     console.log("in delete section item", formdata);
     return (dispatch) => {
-      axios.post('http://localhost:3001/msec/delItem', formdata)
+      axios.post('http://'+HOST+'/msec/delItem', formdata)
         .then((response) => dispatch(updateDeleteItem(response)))
         .catch(error => {
           console.log("catch", error);
