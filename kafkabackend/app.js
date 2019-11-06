@@ -8,7 +8,7 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('debug', true);
 mongoose
-  .connect(db)
+  .connect(db,{ useNewUrlParser: true, poolSize: 10 })
   .then(() => console.log("connected to mongo db"))
   .catch(err => console.log(err));
 
