@@ -41,7 +41,7 @@ class AddSection extends Component {
   }
 
   render() {
-    if (localStorage.getItem("email") == null && localStorage.getItem("type") !== "owner") {
+    if (localStorage.getItem("token")==null && localStorage.getItem("type")!="owner") {
       return (<Redirect to="/" />)
     }
     return(

@@ -77,7 +77,7 @@ class DeleteSection extends Component {
 
 
   render() {
-    if (!cookie.load('cookyou')) {
+    if (localStorage.getItem("token")==null && localStorage.getItem("type")!="owner") {
       return (<Redirect to="/" />)
     }
   

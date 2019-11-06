@@ -81,7 +81,7 @@ async renderMyData() {
 
 
   render() {
-    if (!cookie.load('cookyou')) {
+    if (localStorage.getItem("token")==null && localStorage.getItem("type")!="owner") {
       return (<Redirect to="/" />)
     }
     let displaySection = ""

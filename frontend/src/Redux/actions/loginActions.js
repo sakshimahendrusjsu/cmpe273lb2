@@ -4,11 +4,12 @@ import {HOST} from '../constants/host';
 
 export function signup(formdata) {
   console.log("Signup", formdata);
+  console.log('http://'+HOST+'/msignup/signup');
   return (dispatch) => {
     axios.post('http://'+HOST+'/msignup/signup', formdata)
       .then((response) => dispatch(updateSignUp(response)))
       .catch(error => {
-        console.log("catch", dispatch(updateSignUp(error.response)));
+        console.log("catch", dispatch(updateSignUp(error)));
       })
   }
 }
@@ -17,17 +18,20 @@ function updateSignUp(returndata) {
   console.log("in sign up update", returndata);
   if(returndata!==undefined){
   return { type: SIGN, payload: returndata.data }
+  }else{
+    return { type: SIGN, payload: returndata.response.data }
   }
 }
 
 export function signin(formdata) {
   console.log("Signin", formdata);
+  console.log('http://'+HOST+'/msignup/signup');
   axios.defaults.withCredentials = true;
   return (dispatch) => {
     axios.post('http://'+HOST+'/mlogin/login', formdata)
       .then((response) => dispatch(updateSignIn(response)))
       .catch(error => {
-        console.log("catch", dispatch(updateSignUp(error.response)));
+        console.log("catch", dispatch(updateSignUp(error)));
       })
   }
 }
@@ -49,5 +53,7 @@ function updateSignIn(returndata) {
     console.log("somethign went wrong",returndata.data);
     return { type: SIGN, payload: returndata.data }
   }
-  
+  else{
+    return { type: SIGN, payload: returndata.response.data }
+  }
 }

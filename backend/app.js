@@ -20,7 +20,7 @@ mongoose
   .catch(err => console.log(err));
 
 //use cors to allow cross origin resource sharing
-app.use(cors({ origin: 'http://13.58.25.51:3000', credentials: true }));
+app.use(cors({ origin: 'http://18.224.190.188:3000', credentials: true }));
 //use express session to maintain session data
 app.use(session({
   secret: 'cmpe273_grubhub_react_mysql_express',
@@ -37,7 +37,7 @@ app.use(cookieParser());
 
 //Allow Access Control
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://13.58.25.51:3000');
+  res.setHeader('Access-Control-Allow-Origin', 'http://18.224.190.188:3000');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');

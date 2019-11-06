@@ -1,13 +1,10 @@
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const keys = require("../config/settings");
-const passport = require("passport");
 
 //Load user Model
 const User = require("../models/UserSchema");
 
 function handle_request(req,callback){
-  console.log("/signup-mongo kafkabackend",message);
+  console.log("/signup-mongo kafkabackend",req);
   User.findOne({$and:[{email:req.body.email},{user_type:req.body.type}]}).then(user=>{
       if(user){
         callback(null, {
