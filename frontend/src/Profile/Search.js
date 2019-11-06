@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import './search.css';
-import { Nav, NavItem, NavLink } from 'reactstrap';
+import { Nav, NavItem, NavLink,ListGroup,ListGroupItem } from 'reactstrap';
 import { connect } from 'react-redux';
 import { selectRestuarantByCuisine,selectRestuarantByItems } from '../Redux/actions/restaurantActions';
 
@@ -67,11 +67,13 @@ class Search extends Component {
 
     return arr.map((item,index)=>
       {return (
+        <ListGroupItem color="success">
       <NavItem key={index}
        onClick={this.handleFilter.bind(this,item)}>
        {item}
        <br/>
     </NavItem>
+    </ListGroupItem>
     )
       });
     }
@@ -114,12 +116,14 @@ class Search extends Component {
 
     cart =  <div className="container">
              <div className="row">
-                    <div id = "leftbox">
+                    <div style={{marginLeft:15,padding:29}} id = "leftbox">
                     <h1 id='filter'>Filter</h1>
                 <table id='cuisine'>
+                <ListGroup >
                 <Nav vertical>
                       {this.renderTableData()}
                   </Nav>
+                </ListGroup>
                 </table>
               </div>
               <div id = "middlebox">
