@@ -13,10 +13,10 @@ class LandingPage extends Component {
         }
     }
     render() {
-        if (localStorage.getItem("token")==null && localStorage.getItem("type")!="buyer") {
+        if (localStorage.getItem("token")!=null && localStorage.getItem("type")=="buyer") {
             return (<Redirect to="/home" />);                                     
           }
-          if (localStorage.getItem("token")==null && localStorage.getItem("type")!="owner") {
+          if (localStorage.getItem("token")!=null && localStorage.getItem("type")=="owner") {
             return (<Redirect to="/dItems" />);                                     
           }
         return (

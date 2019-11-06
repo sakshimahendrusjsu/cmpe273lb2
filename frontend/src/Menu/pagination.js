@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import './search.css';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import { connect } from 'react-redux';
 import { selectRestuarantByCuisine,selectRestuarantByItems } from '../Redux/actions/restaurantActions';
 
 let cuisineSet = new Set();
-class Search extends Component {
+class Pagination extends Component {
   constructor(props) {
     super(props);
     console.log(props.location);
     this.state = {
       currentPage: 1,
-      todosPerPage: 5,
+      todosPerPage: 2,
       searchText : props.location.state.searchText,
       result: [],
       cuisineItem:"",
       renderPageNumbers: "",
     };
-    this.handleFilter = this.handleFilter.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleFilter = this.handleFilter.bind(this)
   }
 
   handleFilter= (row,index,event) => {
@@ -41,12 +39,6 @@ class Search extends Component {
     }
    console.log(data);
    this.props.selectRestuarantByItems(data); 
-  }
-
-  handleClick(event) {
-    this.setState({
-        currentPage: Number(event.target.id)
-    });
   }
 
   renderTableData() {
@@ -89,7 +81,7 @@ class Search extends Component {
       const indexOfLastTodo = currentPage * todosPerPage;
       const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
       const currentTodos = foodItems.slice(indexOfFirstTodo, indexOfLastTodo);
-      this.state.result=currentTodos;
+       
       // Logic for displaying page numbers
       const pageNumbers = [];
       for (let i = 1; i <= Math.ceil(foodItems.length / todosPerPage); i++) {
@@ -100,13 +92,12 @@ class Search extends Component {
       this.state.renderPageNumbers = pageNumbers.map(number => {
           return (
 
-              <li class="page"
-              className={ this.state.currentPage==number ? "page active" : "page" }
+              <li
                   key={number}
                   id={number}
                   onClick={this.handleClick}
               >
-                  -{number} 
+                  {number} 
               </li>  
           );
       });
@@ -126,7 +117,8 @@ class Search extends Component {
                 <div>{this.props.res.length} Restaurants Found!! <hr /></div>
                 <div>
                     <ul >
-                        {currentTodos.map(res => (
+
+                        {this.props.res.map(res => (
                             <li key={res.id}>
                                 <Link to={{ pathname: '/cart', state: {res:res}}}>{res.name}</Link>
                                 <br/>
@@ -137,11 +129,10 @@ class Search extends Component {
                             </li>))
                         }
                     </ul>
-                    <div class="pagination">
-                    {this.state.renderPageNumbers}
-                  </div>
                 </div>
-               
+                <div className="pagination">
+                {this.state.renderPageNumbers}
+                </div>
                 </div>
                 <div>
                 
@@ -182,4 +173,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination);

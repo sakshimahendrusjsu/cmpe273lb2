@@ -38,15 +38,14 @@ class ItemsPage extends Component {
 
     async renderMyData() {
         console.log("render data");
-        if (cookie.load('cookyou')) {
-            let user = cookie.load('cookyou')
+        if (localStorage.getItem("token")!=null) {
             let data = {
                 id: localStorage.getItem('_id'),
                 email: localStorage.getItem('email'),
                 name: localStorage.getItem('restaurant_name')
             }
           await  this.props.getAll(data);
-            console.log("sections", this.props.sections);
+            // console.log("sections", this.props.sections);
         }
     }
 
@@ -94,9 +93,9 @@ class ItemsPage extends Component {
                 );
             });
 
-            if (!cookie.load('cookyou')) {
+            if (localStorage.getItem("token")==null && localStorage.getItem("type")!="owner") {
                 return (<Redirect to="/" />)
-            }
+              }
             console.log("menu", this.props.sections)
             this.state.menu = <Products products={currentTodos} type={"owner"} handleRemoveItem={this.handleRemoveItem} />
         }

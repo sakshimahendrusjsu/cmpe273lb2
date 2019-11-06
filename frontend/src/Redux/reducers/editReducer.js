@@ -54,6 +54,7 @@ export default function editReducer(state = [], action = {}) {
         case GET_ALL:
             console.log("heylo heylo", action.payload);
             let data = action.payload.data.message.result;
+            if(data!=undefined || data!=null){
             return Object.assign({}, state, {
                 first: data.firstName, 
                 last: data.lastName,
@@ -62,6 +63,7 @@ export default function editReducer(state = [], action = {}) {
                 restaurantName: data.restaurant_name == null ? "" : data.restaurant_name , 
                 image: data.image == null ? "download.png" : data.image
             });
+        }
         default: return state;
     }
 }

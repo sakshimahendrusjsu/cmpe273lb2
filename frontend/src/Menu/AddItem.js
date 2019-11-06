@@ -67,8 +67,6 @@ class AddMenu extends Component {
 async renderMyData() {
     this.state.sections = []
     console.log("render data");
-    if (cookie.load('cookyou')) {
-      let user = cookie.load('cookyou')
       let data = { 
         id:localStorage.getItem('_id'),
         email:localStorage.getItem('email'),
@@ -76,7 +74,6 @@ async renderMyData() {
        }
       this.props.getAll(data);
       console.log("sections", this.props.sections);
-    }
   }
 
 

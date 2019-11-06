@@ -18,7 +18,7 @@ export default class Products extends Component {
                 <div className="row-md-2" key={product._id}>
                     <div className="thumbnail text-center">
                         <a href={`#${product._id}`}>
-                        <img  src={require(`../upload/${product.image}`)} alt={product.item_name} className="thumbnail"/>
+                        <img  style={{width:'100%',height:'auto'}} src={require(`../upload/${product.image}`)} alt={product.item_name} className="thumbnail"/>
                             {/* <img src={require(`../res.jpeg`)} alt={product.name} className="thumbnail" /> */}
                             <h5>{product.name}</h5>
                             <p>{product.description}</p>

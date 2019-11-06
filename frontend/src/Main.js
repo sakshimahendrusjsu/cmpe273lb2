@@ -25,6 +25,7 @@ import DragDrop from './ManageOrders/dragorder';
 import NewOrder from './ManageOrders/NewOrder';
 import code from './ManageOrders/codeboxOrder';
 import chat from './ChatInput/ChatInput';
+import pagination from './Menu/pagination';
 //Create a Main Component
 class Main extends Component {
     render(){

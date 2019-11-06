@@ -63,7 +63,6 @@ class DeleteSection extends Component {
 
   renderMyData() {
     this.state.sections = []
-    if (cookie.load('cookyou')) {
       let user = cookie.load('cookyou')
       let data = { 
         id:localStorage.getItem('_id'),
@@ -72,7 +71,6 @@ class DeleteSection extends Component {
        }
       this.props.getAll(data);
       console.log("sections", this.props.sections);
-    }
   }
 
 

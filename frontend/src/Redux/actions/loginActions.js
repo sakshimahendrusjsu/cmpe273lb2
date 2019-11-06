@@ -31,7 +31,7 @@ export function signin(formdata) {
     axios.post('http://'+HOST+'/mlogin/login', formdata)
       .then((response) => dispatch(updateSignIn(response)))
       .catch(error => {
-        console.log("catch", dispatch(updateSignUp(error)));
+        console.log("catch", dispatch(updateSignUp(error.response)));
       })
   }
 }
