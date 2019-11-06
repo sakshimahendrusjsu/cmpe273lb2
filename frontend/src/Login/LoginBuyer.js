@@ -35,7 +35,7 @@ class LoginBuyer extends Component {
     console.log(this.props.message);
     console.log(output);
     console.log("cookyou",response);
-    if (localStorage.getItem(token)==null && localStorage.getItem(type)!="buyer") {
+    if (localStorage.getItem("token")!=null && localStorage.getItem("type")=="buyer") {
       return (<Redirect to="/home" />);                                     
     }
     return (
