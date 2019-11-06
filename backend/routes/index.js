@@ -7,7 +7,7 @@ const router = express.Router();
 // const createRoutes = require('./create.js');
 // const profileRoutes = require('./profile.js');
 // const sectionRoutes = require('./section.js');
-// const resRoutes = require('./res.js');
+// const resRoutes = require('../mongo-routes/res');
 // const uploadRoutes = require('./upload');
 
 const mloginRoutes = require('../kafka-routes/login');
